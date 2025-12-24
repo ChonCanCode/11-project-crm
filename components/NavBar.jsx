@@ -1,15 +1,17 @@
 function NavBar() {
   return (
-    <nav className="w-full h-16 bg-white border-b border-gray-200 flex items-center justify-between shadow-sm">
-      <div className="flex items-center ml-5">
-        <h1 className="text-xl font-semibold text-gray-800">Project CRM</h1>
+    <nav className="pl-5 pr-5 w-full h-16 bg-white border-b border-gray-200 flex items-center justify-between shadow-sm">
+      <div className="flex items-center cursor-pointer">
+        <h1 className="text-xl font-semibold text-gray-800 hover:text-red-400">
+          Project CRM
+        </h1>
       </div>
 
       <div className="flex items-center gap-6">
-        <button className="text-gray-600 hover:text-black transition">
-          Alerts
+        <button className="text-gray-600 hover:text-red-400 transition cursor-pointer w-9 h-9 rounded-full hover:bg-gray-300">
+          <i class="fa-solid fa-bell"></i>
         </button>
-        <button className="w-9 h-9 rounded-full bg-gray-200 flex items-center justify-center text-gray-700 hover:bg-gray-300 transition">
+        <button className="w-9 h-9 rounded-full hover:text-red-400 flex items-center justify-center text-gray-700 hover:bg-gray-300 transition cursor-pointer">
           U
         </button>
       </div>
