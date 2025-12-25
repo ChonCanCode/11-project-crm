@@ -1,20 +1,46 @@
 # 11-project-crm
 
 ## Goal
+
 - Build a basic CRM system for property management.
 
+---
+
+### 20251223
+
+- Build a home page with header menu bar on the left and a list of property showing at the front.
+- Naming conventions
+  - PascalCase
+    - React components
+    - Custom hooks that return JSX
+    - Pages/ screens (in routing setups)
+  - camelCase
+    - Utility/ helper functions
+    - Constants
+    - Services (API calls)
+    - Configuration files
+    - Styles
+
+### 20251224
+
+- Used `https://react-leaflet.js.org/` to build an interactive map, however, it is hard to modifie therefore such approah abandened.
+- Fixed `NavBar.jsx` style, realised `style.css` override padding and margin.
+
+### 20251225
+
+- Continue working on property listing function.
+- Added `https://www.w3schools.com/react/react_router.asp`
+
+  - `Routes` should live where the page content changes
+  - `NavBar` is a shared UI componen, not page content, therefore they shouldn't be placed in the same file.
+
+  ```
+  main.jsx
+  └── BrowserRouter
+    └── App.jsx
+         ├── NavBar
+         └── Routes
+
+  ```
 
 ---
-### 20251223
-- Build a home page with header menu bar on the left and a list of property showing at the front.
--  Naming conventions
-    -   PascalCase
-        -   React components
-        -   Custom hooks that return JSX
-        -   Pages/ screens (in routing setups)
-    -   camelCase
-        -   Utility/ helper functions
-        -   Constants
-        -   Services (API calls)
-        -   Configuration files
-        -   Styles
