@@ -10,6 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.1",
+    "@mui/material": "^7.3.6",
+    "@mui/x-data-grid": "^8.23.0",
     "@tailwindcss/vite": "^4.1.18",
     "leaflet": "^1.9.4",
     "react": "^19.0.0-rc.1",
