@@ -6,6 +6,15 @@
 
 ---
 
+## Library installed
+
+- npm install react-router-dom
+- npm install -D tailwindcss@3
+- npm install @mui/material @emotion/react @emotion/styled
+-
+
+---
+
 ### 20251223
 
 - Build a home page with header menu bar on the left and a list of property showing at the front.
@@ -47,3 +56,9 @@
 - `Material UI` an open-source React component library. Contain all the template that I need to build a CRM.
 
 ---
+
+### 20251227
+
+- Added the library in README in case such file is opening in a new device.
+- Removing the table from MUI library
+- Learning to build a table from scratch
