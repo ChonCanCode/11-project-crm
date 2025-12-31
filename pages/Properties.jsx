@@ -30,6 +30,22 @@ function Properties() {
       status: "Occupied",
     },
   ]);
+
+  const [editingId, setEditingId] = useState(null);
+  const [editedProperty, setEditedProperty] = useState({
+    street: "",
+    city: "",
+    postcode: "",
+    tenant: "",
+    rent: "",
+    status: "",
+  });
+
+  const handleEdit = (property) => {
+    setEditingId(property.id);
+    setEditedProperty({ ...property });
+  };
+
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">Property List</h2>
@@ -46,6 +62,13 @@ function Properties() {
         </thead>
         <tbody>
           {properties.map((property) => (
+            <tr key={property.id}>
+              <td>
+                {editingId === property.id ? <input></input> : property.street}
+              </td>
+            </tr>
+          ))}
+          {/* {properties.map((property) => (
             <tr key={property.id} className="border-b hover:bg-gray-100">
               <td className="py-2 px-4">{property.street}</td>
               <td className="py-2 px-4">{property.city}</td>
@@ -54,7 +77,7 @@ function Properties() {
               <td className="py-2 px-4">{property.rent}</td>
               <td className="py-2 px-4">{property.status}</td>
             </tr>
-          ))}
+          ))} */}
         </tbody>
       </table>
     </div>
