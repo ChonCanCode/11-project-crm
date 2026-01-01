@@ -1,0 +1,29 @@
+[
+  {
+    "id": "1",
+    "street": "Oldham Street",
+    "city": "Manchester",
+    "postcode": "M1 2AB",
+    "tenant": "John Cena",
+    "rent": 900,
+    "status": "Occupied"
+  },
+  {
+    "id": "2",
+    "street": "Rochdale Street",
+    "city": "Rochdale",
+    "postcode": "M1 2AB",
+    "tenant": "John Cena",
+    "rent": 900,
+    "status": "Occupied"
+  },
+  {
+    "id": "3",
+    "street": "Middleton Street",
+    "city": "Middleton",
+    "postcode": "M2 3AB",
+    "tenant": "Vacant",
+    "rent": 0,
+    "status": "Vacant"
+  }
+]
