@@ -12,9 +12,11 @@ function Properties() {
   return (
     <div className="p-4">
       <h2 className="text-2xl font-bold mb-4">Property List</h2>
-      <Link to="/Adding">Adding New</Link>
-      <table className="min-w-full table-auto border-collapse bg-white shadow-md rounded-lg">
-        <thead>
+      <button className="w-auto bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700 transition p-2 mb-1">
+        <Link to="/Adding">Add New Property</Link>
+      </button>
+      <table className="min-w-full table-auto border-collapse bg-white shadow-md rounded-md">
+        <thead className="rounded-md">
           <tr className="bg-gray-300 text-left border-b">
             <th className="py-2 px-4">ID</th>
             <th className="py-2 px-4">Street Name</th>
