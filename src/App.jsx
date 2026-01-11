@@ -1,7 +1,7 @@
-import HomePage from "../pages/home";
-import NavBar from "../components/NavBar";
-import Properties from "../pages/Properties";
-import Adding from "../pages/Adding";
+import HomePage from "../src/pages/home";
+import NavBar from "../src/components/NavBar";
+import Properties from "../src/pages/Properties";
+import Adding from "../src/pages/Adding";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
