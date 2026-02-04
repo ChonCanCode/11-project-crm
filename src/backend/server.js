@@ -23,4 +23,6 @@ mongoose
   .then(() => console.log("MongDB connected"))
   .catch((err) => console.err(err));
 
-app.listen(5000, console.log("PORT:500 is activated."));
+app.listen(5000, () => {
+  console.log("PORT:5000 is activated.");
+});
