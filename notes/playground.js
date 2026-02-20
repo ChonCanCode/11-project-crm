@@ -3,21 +3,12 @@ import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
 import bcrypt from "bcrypt";
-//the bcrypt is an encryption library, but where does it come from and how does it work?
-
 import jwt from "jsonwebtoken";
-//the token is for when a user logged in, it useses as a key to access certain information.
-
 dotenv.config();
-// this is just enable the environment variable to be executed.
-
 const app = express();
-// active express
 app.use(express.json());
-//it tels express to parse json files?
 
 app.use(cors());
-//it tells the backend server to accept any post and reqest from other server?
 
 mongoose
   .connect(process.env.MONGO_URI)
@@ -29,10 +20,8 @@ const userSchema = new mongoose.Schema({
   password: String,
   role: { type: String, default: "user" },
 });
-// this mongoose syntax is a function which act as a component for User variable when ever this variable is called it will create a new file in mongoose, with a format(Schema) like a typescript only accept a specific format.
 
 const User = mongoose.model("User", userSchema);
-// this variable has a string within the function then calling another component. Why is there a string at the front? would it be loggin the user name? and what ids model().
 
 const propertySchema = new mongoose.Schema({
   street: String,
@@ -42,7 +31,7 @@ const propertySchema = new mongoose.Schema({
   rent: Number,
   status: String,
 });
-//same as userSchema function just a typescript checking the format? or actualling creating the format?
+//I still dont get what does schema do for definning the (what should u you call key vale? string?) does is setting up a fromat for information to be put without it data will not be able allocaeted specifically? d
 
 const Property = mongoose.model("Property", propertySchema);
 
@@ -61,8 +50,7 @@ app.post("/api/auth/register", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// app.post & get are functions waiting to be called with the HTTP made the GET & POST request while while matching the URL which represent as a string in the function parameters.  And that URL doesnt needs to be an actually page exist in the WEB. But as a hidden route for express to recongise.
-// this register.post is posting something like adding a new user in, but how does it work? is it .save()? and is save() mongoose function? or express?
+//I under the code above is to register a new user. however, why req.body.email is needed? arent req.body is parse by express(). Does it work both side like I am passing informing into JSON format?
 
 app.post("/api/auth/login", async (req, res) => {
   try {
@@ -79,6 +67,7 @@ app.post("/api/auth/login", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+// This code here using .post() to upload information from input tofind a specific user emailand comparing the password. But why proces.env.JW_Secrete here? is it there to take the enviorment variable for esting? in compare it comparing the the req.body.password so it means it takes the information from the mongoose? and compare to user input? but there is no .GET() how does it work?
 
 app.get("/api/properties", async (req, res) => {
   try {
@@ -88,6 +77,7 @@ app.get("/api/properties", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+//in this respond here is responding with property information is .json() parsing JSON file?
 
 app.post("/api/properties", async (req, res) => {
   try {
@@ -98,6 +88,7 @@ app.post("/api/properties", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+//Is this adding new property?
 
 app.get("/", (req, res) => {
   res.send("API is running");
