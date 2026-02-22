@@ -31,7 +31,6 @@ const propertySchema = new mongoose.Schema({
   rent: Number,
   status: String,
 });
-//I still dont get what does schema do for definning the (what should u you call key vale? string?) does is setting up a fromat for information to be put without it data will not be able allocaeted specifically? d
 
 const Property = mongoose.model("Property", propertySchema);
 
@@ -50,7 +49,6 @@ app.post("/api/auth/register", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-//I under the code above is to register a new user. however, why req.body.email is needed? arent req.body is parse by express(). Does it work both side like I am passing informing into JSON format?
 
 app.post("/api/auth/login", async (req, res) => {
   try {
@@ -67,7 +65,7 @@ app.post("/api/auth/login", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-// This code here using .post() to upload information from input tofind a specific user emailand comparing the password. But why proces.env.JW_Secrete here? is it there to take the enviorment variable for esting? in compare it comparing the the req.body.password so it means it takes the information from the mongoose? and compare to user input? but there is no .GET() how does it work?
+//Research how HTTP POST and GET events are triggered.
 
 app.get("/api/properties", async (req, res) => {
   try {
@@ -77,7 +75,6 @@ app.get("/api/properties", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-//in this respond here is responding with property information is .json() parsing JSON file?
 
 app.post("/api/properties", async (req, res) => {
   try {
@@ -88,7 +85,6 @@ app.post("/api/properties", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-//Is this adding new property?
 
 app.get("/", (req, res) => {
   res.send("API is running");
