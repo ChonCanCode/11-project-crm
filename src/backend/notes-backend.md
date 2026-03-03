@@ -54,7 +54,7 @@
    In here I need to thinkg about what data I need to store.
    - User - Email login, password, role
    - Properties - Address, tenant, rent & status
-   - Authentication -
+   - Authentication - login, registration
    - Data storage
    - API acccess
 
@@ -110,6 +110,7 @@ app.post("api/auth/login", async(req, res) => {
       const token = jwt.sign({id:user_id}, process.env.JWT_SECRET);
 
       res.json({token});
+
    } catch (err){
       res.status(500),json({error:err.message})
    }
