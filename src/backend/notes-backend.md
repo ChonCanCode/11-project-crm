@@ -51,29 +51,67 @@
    ```
 
 3. **Models (Data layer)**
+   In here I need to thinkg about what data I need to store.
+   - User - Email login, password, role
+   - Properties - Address, tenant, rent & status
+   - Authentication -
+   - Data storage
+   - API acccess
 
-   At this point I need to think about the format of the data will be stored and extract from the database.
+   User:
 
-   Models meaning:
-   - Structure of data
-   - Validation rules
-   - Default values
-   - Constraints
-   - Relationships
+   ```
+   js
 
-     ```
-     js
+   const userSchema = new mongoose.Schema({
+      email: String,
+      password: String,
+      role: {type: String, default"user"}
+   })
 
-     const userSchema = new mongoose.Schema({
-        email: String,
-        password: String,
-        role: {type: String, default"user"}
-     })
+   const User = mongoose.model("User", userSchema);
 
-     ```
+   ```
 
-     ^This defines:
-     - What a user looks like
-     - What fields are allowed
-     - What type each field is
-     - Default behaviour
+   ^This defines:
+   - What a user looks like
+   - What fields are allowed
+   - What type each field is
+   - Default behaviour
+
+   Properties:
+
+   ```
+   const propertySchema = new mongoose.Schema({
+      street: String,
+      city: String,
+      postcode: String,
+      tenant: String,
+      rent: Number,
+      status: String,
+   })
+
+   const Property = mongoose.model("Property", propertySchema);
+   ```
+
+   Authentication:
+
+4. Receive email + password
+
+```
+app.post("api/auth/login", async(req, res) => {
+   try {
+      const user = await User.findOne({ email: req.body.email})
+      if (!user) return res.status(401).send("Invalid credentials");
+
+      const valid = await bcrypt.compare(req.body.password, user.password);
+      if (!valid) = return res.status(401).send("Invalid credentials");
+
+      const token = jwt.sign({id:user_id}, process.env.JWT_SECRET);
+
+      res.json({token});
+   } catch (err){
+      res.status(500),json({error:err.message})
+   }
+})
+```
