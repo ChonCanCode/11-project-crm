@@ -94,9 +94,52 @@
    const Property = mongoose.model("Property", propertySchema);
    ```
 
-   Authentication:
+Authentication:
 
-4. Receive email + password
+- Registration
+
+  ```
+  app.post("/api/auth/register". async (req, res) => {
+     try {
+        const hashedPassword = await bcrypt.hash(req.body.passpord, 10);
+
+        const user = new User({
+           email: req.body.email,
+           password: hashedPassword,
+
+        await user.save();
+        res.status(201).send("User created");
+        })
+     } catch (err) {
+        res.status(500).json({err: err.message});
+     }
+
+  })
+  ```
+
+- Login
+
+  ```
+  app.post("/api/auth/login", async (req, res) => {
+     try {
+        const user = await User.findOne({ email:req.body.email});
+        if (!user) return res.status(401).send("Invalid email");
+
+        const valid = awaiy bcrypt.compare(req.body.password, user.password);
+        if (!valid) return res.status(401).send("Invalid password");
+
+        const toke = jwt.sign({ id:user._id}, process.env.JWT_SECRET);
+
+        res.json
+     } catch (error) {
+        res.status(500).json({ error:err.message});
+     }
+  })
+  ```
+
+- Token generation
+- Password hashing
+- Route protection
 
 ```
 app.post("api/auth/login", async(req, res) => {
