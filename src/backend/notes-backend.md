@@ -99,46 +99,57 @@ Authentication:
 - Registration
 
   ```
-  app.post("/api/auth/register". async (req, res) => {
-     try {
-        const hashedPassword = await bcrypt.hash(req.body.passpord, 10);
+   app.post("api/auth/register", async (req, res) => {
+      try {
+            const hashPassword = await bcrypt.hash(req.body.password, 10);
 
-        const user = new User({
-           email: req.body.email,
-           password: hashedPassword,
+            const user = new User ({
+               email: req.body.email,
+               password: hashPassword,
+         })
 
-        await user.save();
-        res.status(201).send("User created");
-        })
-     } catch (err) {
-        res.status(500).json({err: err.message});
-     }
+         await user.safe();
+         res.status(201).send("User registered");
+      } catch (err) {
+         res.status(500).json({error: err.message})
+      }
+   })
+  ```
 
-  })
+- Hash password
+
+  ```
+  const hashedPassword = await bcrypt.hash(req.body.password, 10);
   ```
 
 - Login
 
   ```
-  app.post("/api/auth/login", async (req, res) => {
-     try {
-        const user = await User.findOne({ email:req.body.email});
-        if (!user) return res.status(401).send("Invalid email");
+   app.post("/api/auth/login", async(req, res) => {
+      try {
+         const user = await User.findOne({ email: req.body.email});
+         if (!user) return res.status(401).send("Invalid credentials");
 
-        const valid = awaiy bcrypt.compare(req.body.password, user.password);
-        if (!valid) return res.status(401).send("Invalid password");
+         const valid = await bcrypt.compare(req.body.password, user.password);
+         if (!valid) return res.status(401).send("Invalid credentials");
 
-        const toke = jwt.sign({ id:user._id}, process.env.JWT_SECRET);
+         const token = jwt.sign({ id:user_id}, process.env.JWT_SECRET);
 
-        res.json
-     } catch (error) {
-        res.status(500).json({ error:err.message});
-     }
-  })
+         res.json({ token });
+      } catch (err) {
+         res.status(500).json({ err: err.message });
+      }
+   });
   ```
 
 - Token generation
-- Password hashing
+  - Token register`jwt.sign()`
+  - Putting a signatuire of where the token is coming from `process.env.JWT_SECRET`
+
+  ```
+  const token = jwt.sign ({id:user_id}, process.env.JWT_SECRET);
+  ```
+
 - Route protection
 
 ```
