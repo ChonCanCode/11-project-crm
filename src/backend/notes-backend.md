@@ -150,23 +150,30 @@ Authentication:
   const token = jwt.sign ({id:user_id}, process.env.JWT_SECRET);
   ```
 
-- Route protection
+- Listing content
+
+  ```
+     app.get("/api/properties", async(req, res) => {
+        try {
+           const properties = await Property.find();
+           res.json(properties);
+        } catch (err) {
+           res.status(500).json({ err:err.message })
+        }
+     })
+  ```
+
+- Creating new property
 
 ```
-app.post("api/auth/login", async(req, res) => {
-   try {
-      const user = await User.findOne({ email: req.body.email})
-      if (!user) return res.status(401).send("Invalid credentials");
+   app.post("/api/properties", async (req, res) => {
+      try {
+         const property = new Property(req.body);
+         await property.save();
+         res.status(201).json(property);
+      } catch(err) {
+         res.status(500).json({ err:err.message })
+      }
+   })
 
-      const valid = await bcrypt.compare(req.body.password, user.password);
-      if (!valid) = return res.status(401).send("Invalid credentials");
-
-      const token = jwt.sign({id:user_id}, process.env.JWT_SECRET);
-
-      res.json({token});
-
-   } catch (err){
-      res.status(500),json({error:err.message})
-   }
-})
 ```
